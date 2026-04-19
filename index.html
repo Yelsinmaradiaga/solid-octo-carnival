@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="default">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The WallSpire Podcast · Plataforma de Crecimiento</title>
+  <meta name="description" content="The WallSpire Podcast: historias de desarrollo, crecimiento y mejora continua. Comunidad desde Nueva York para profesionales que no paran de ejecutar." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{--max:1280px;--radius:14px;--border:#232323;--bg:#0a0a0a;--panel:#101010;--panel2:#151515;--text:#f0f2f5;--muted:#b8c0cc;--brand:#98ca3f;--brand2:#00aeef;--accent:#f6c453}
+    [data-theme="neon"]{--bg:#050505;--panel:#0e0e1a;--panel2:#14143d;--text:#e7e7ff;--muted:#9090b0;--brand:#ff6bfa;--brand2:#00f1ff;--accent:#ffde59}
+    [data-theme="gold"]{--bg:#090807;--panel:#1e1612;--panel2:#2a1f17;--text:#fdf4e3;--muted:#bda58b;--brand:#cba135;--brand2:#f5c150;--accent:#e2b04a}
+    [data-theme="ocean"]{--bg:#001219;--panel:#001f2f;--panel2:#002d47;--text:#e0f4ff;--muted:#8dbbcf;--brand:#0077b6;--brand2:#0096c7;--accent:#48cae4}
+    [data-theme="dark"]{--bg:#000;--panel:#0a0a0a;--panel2:#1a1a1a;--text:#f5f5f5;--muted:#888;--brand:#bb86fc;--brand2:#3700b3;--accent:#03dac6}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;line-height:1.6;padding-bottom:64px;min-height:100vh}
+    img{display:block;max-width:100%} a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+    .btn{border:none;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+    .btn-ghost{background:var(--panel2);border:1px solid var(--border);color:var(--text)}
+    .btn-cta{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#0b0b0b}
+    .btn-small{padding:6px 10px;font-size:.85rem;border-radius:8px}
+    header{position:sticky;top:0;z-index:100;backdrop-filter:blur(8px);background-color:#0b0b0bcc;border-bottom:1px solid var(--border)}
+    .nav{display:grid;grid-template-columns:1fr auto auto;align-items:center;min-height:72px;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-fallback,.brand-logo{width:40px;height:40px;border-radius:10px}
+    .brand-fallback{background:conic-gradient(from 120deg,var(--brand),var(--brand2))}
+    .brand-logo{display:none;object-fit:cover}
+    .brand-name{font-family:Poppins,system-ui;font-weight:800;font-size:1.2rem}
+    .meta{color:var(--muted);font-size:.92rem}
+    nav ul{list-style:none;display:flex;gap:14px} nav a{padding:8px 10px;border-radius:10px} nav a:hover{background:var(--panel2)}
+    .hero{position:relative;padding:48px 0 32px;border-bottom:1px solid var(--border);overflow:hidden}
+    .hero-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+    .kicker{color:var(--brand);text-transform:uppercase;font-weight:800;letter-spacing:.12em;font-size:.8rem}
+    h1{font-family:Poppins,system-ui;font-weight:800;font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.12;margin:.35rem 0 .6rem}
+    .searchbar{margin-top:18px;display:flex;gap:10px}
+    .input{flex:1;background:var(--panel2);border:1px solid var(--border);color:var(--text);padding:12px 14px;border-radius:12px}
+    .hero-image{border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:0 16px 40px #0008}
+    .hero-image img{width:100%;height:220px;object-fit:cover}
+    .player{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:8px}
+    audio{width:100%}
+    .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(1200px 500px at 10% -10%,#00aeef55,transparent),radial-gradient(1200px 500px at 100% 0%,#98ca3f44,transparent)}
+    main section{padding:44px 0}
+    .section-title-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+    .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+    .chip{border:1px solid var(--border);background:var(--panel2);color:var(--text);padding:8px 10px;border-radius:999px;font-size:.85rem;cursor:pointer;user-select:none}
+    .chip.active{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#0b0b0b;border-color:transparent}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{display:flex;flex-direction:column;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;position:relative}
+    .thumb{height:180px;width:100%;display:block;object-fit:cover;background:#0f0f0f}
+    .body{padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+    .tag{font-size:.75rem;border:1px solid var(--border);background:var(--panel2);padding:4px 8px;border-radius:999px}
+    .cta{display:flex;gap:10px;margin-top:auto;padding:14px 16px}
+    .guest-card,.blog-card,.upload-card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+    .upload-list{margin-left:20px;display:grid;gap:8px}
+    footer{border-top:1px solid var(--border);background:var(--panel);padding:36px 0;margin-top:24px}
+    .foot{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+    #assistant{border-top:1px solid var(--border);margin-top:24px}
+    #chatHistory{background:var(--panel2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+    .chat-msg{display:flex;flex-direction:column;gap:4px}
+    .chat-msg.user{align-items:flex-end}
+    .chat-msg.assistant{align-items:flex-start}
+    .chat-bubble{display:inline-block;padding:8px 12px;border-radius:12px;max-width:80%}
+    .chat-bubble.user{background:var(--brand2);color:#0b0b0b}
+    .chat-bubble.assistant{background:var(--panel);border:1px solid var(--border);color:var(--text)}
+    @media (max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}.hero-wrap{grid-template-columns:1fr}.foot{grid-template-columns:1fr}.nav{grid-template-columns:1fr}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
+    .top-note{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin-top:10px}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <div id="brandFallback" class="brand-fallback" aria-hidden="true"></div>
+      <img id="brandLogo" class="brand-logo" alt="Logo" />
+      <div>
+        <div class="brand-name" id="brandName">The WallSpire Podcast</div>
+        <div class="meta" id="brandTag">NYC · Español</div>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#episodios">Episodios</a></li>
+        <li><a href="#invitados">Invitados</a></li>
+        <li><a href="#acerca">Acerca</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#subir">Subir contenido</a></li>
+      </ul>
+    </nav>
+    <div class="actions">
+      <select id="themeSelect" class="btn btn-ghost btn-small" aria-label="Cambiar tema">
+        <option value="default">Tema Platzi</option>
+        <option value="neon">Neón</option>
+        <option value="gold">Oro</option>
+        <option value="ocean">Océano</option>
+        <option value="dark">Oscuro</option>
+      </select>
+      <a class="btn btn-cta" href="#episodios">Escuchar</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-wrap">
+    <div>
+      <div class="kicker" id="kicker">Podcast de Crecimiento</div>
+      <h1 id="heroTitle">Historias reales de desarrollo y mejora continua</h1>
+      <p class="meta" id="heroSubtitle">Conversaciones profundas y prácticas con quienes ejecutan: emprendedores, líderes, expertos y soñadores.</p>
+      <div class="searchbar">
+        <input id="q" class="input" type="search" placeholder="Buscar: desarrollo, liderazgo, proyectos…" aria-label="Buscar" />
+        <button class="btn btn-cta" id="btnBuscar">Buscar</button>
+      </div>
+      <div class="top-note meta" id="topNote">🎙️ Ya listo para producción: usa <code>content-template.json</code> para cargar episodios y artículos.</div>
+    </div>
+    <div class="player" aria-label="Reproductor">
+      <div class="hero-image">
+        <img id="heroVisual" src="https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=1200&q=80" alt="Estudio de podcast con micrófono" loading="lazy" />
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+        <div>
+          <strong id="latestTitle">Último episodio</strong>
+          <div class="meta" id="latestMeta">—</div>
+        </div>
+        <a class="btn btn-ghost" href="#episodios">Notas</a>
+      </div>
+      <audio id="player" controls preload="metadata">Tu navegador no soporta audio.</audio>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="section container" id="episodios">
+    <div class="section-title-row">
+      <h2 id="episodesTitle">Episodios</h2>
+      <span class="meta" id="episodesCount"></span>
+    </div>
+    <p class="meta" id="episodesSub">Sitio preparado para recibir episodios reales desde JSON/CMS/Firebase.</p>
+    <div class="filters" id="filterChips"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="section container" id="invitados">
+    <h2>Invitados</h2>
+    <p class="meta">Conoce a las voces que nos acompañan en cada episodio.</p>
+    <div class="grid" id="guestGrid"></div>
+  </section>
+
+  <section class="section container" id="acerca">
+    <h2>Acerca de WallSpire</h2>
+    <p class="meta" id="aboutSub">The WallSpire Podcast nació en Nueva York como un espacio para hablar de creatividad, liderazgo y resiliencia sin filtros.</p>
+  </section>
+
+  <section class="section container" id="blog">
+    <h2>Blog</h2>
+    <p class="meta">Complementa tu aprendizaje con artículos y recursos.</p>
+    <div class="grid" id="blogGrid"></div>
+  </section>
+
+  <section class="section container" id="subir">
+    <h2>Listo para subir contenido</h2>
+    <div class="upload-card">
+      <p class="meta">Checklist recomendado para publicar contenido nuevo sin tocar el código.</p>
+      <ol class="upload-list">
+        <li>Duplica <strong>content-template.json</strong> y actualiza <code>episodes</code>, <code>guests</code> y <code>blogPosts</code>.</li>
+        <li>Usa imágenes 16:9 (mín. 1200x675) enfocadas a entrevistas, micrófonos y trabajo creativo.</li>
+        <li>Publica audios MP3 y pega su URL en <code>audio</code>.</li>
+        <li>Conecta este JSON a Firebase/tu CMS o reemplaza el bloque <code>CONTENT</code> en este archivo.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section container" id="assistant">
+    <h2>Asistente</h2>
+    <p class="meta">Busca episodios por palabra clave.</p>
+    <div id="chatHistory"></div>
+    <div class="searchbar" style="margin-top:8px">
+      <input id="chatInput" class="input" type="text" placeholder="Pregunta al asistente…" />
+      <button class="btn btn-cta" id="sendChat">Enviar</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container foot">
+    <div>
+      <div class="brand" style="margin-bottom:8px">
+        <div class="brand-fallback" aria-hidden="true"></div>
+        <div>
+          <div class="brand-name" id="footBrand">The WallSpire Podcast</div>
+          <div class="meta" id="footTag">Nunca parar de ejecutar</div>
+        </div>
+      </div>
+      <p class="meta">© <span id="year"></span> <span id="footCopy">The WallSpire Podcast</span></p>
+    </div>
+    <div>
+      <div class="meta">Redes</div>
+      <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+        <a class="btn btn-ghost" href="https://youtube.com/">YouTube</a>
+        <a class="btn btn-ghost" href="https://open.spotify.com/">Spotify</a>
+        <a class="btn btn-ghost" href="https://podcasts.apple.com/">Apple</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  const CONTENT = {
+    episodes: [
+      {id:1,t:'Construir disciplina cuando nadie te ve',g:'hábitos,productividad',guest:'Tania Caballero',d:'39:12',f:'2026-03-10',desc:'Sistemas simples para mantener foco y ejecución en proyectos largos.',cover:'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=1200&q=80',audio:'',notesUrl:'#'},
+      {id:2,t:'Liderar equipos en incertidumbre',g:'liderazgo,negocios',guest:'Kristian Nuñez',d:'48:06',f:'2026-03-17',desc:'Framework práctico para decidir, delegar y sostener cultura.',cover:'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80',audio:'',notesUrl:'#'},
+      {id:3,t:'De idea a producto sin quemarte',g:'emprendimiento,estrategia',guest:'Elena Gómez',d:'42:18',f:'2026-04-02',desc:'Cómo convertir conversaciones con usuarios en roadmap semanal.',cover:'https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=1200&q=80',audio:'',notesUrl:'#'}
+    ],
+    guests:[
+      {n:'TANIA CABALLERO',r:'Trader y Mentora',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80'},
+      {n:'KRISTIAN NUÑEZ',r:'Psicólogo Organizacional',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80'},
+      {n:'ELENA GÓMEZ',r:'Experta en UX',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80'}
+    ],
+    blogPosts:[
+      {title:'Guía rápida para producir episodios semanales',date:'2026-04-01',tag:'producción'},
+      {title:'Plantilla de guion para entrevistas potentes',date:'2026-04-08',tag:'contenido'},
+      {title:'Checklist de publicación multi-plataforma',date:'2026-04-15',tag:'distribución'}
+    ]
+  };
+
+  const THEME_KEY = 'ws-theme-v1';
+  const themeSelect = document.getElementById('themeSelect');
+  function applyTheme(t){ document.documentElement.setAttribute('data-theme', t); try{ localStorage.setItem(THEME_KEY, t);}catch{} }
+  themeSelect.addEventListener('change', () => applyTheme(themeSelect.value));
+  (function(){ const stored = localStorage.getItem(THEME_KEY); if(stored){ themeSelect.value = stored; applyTheme(stored); }})();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const gGrid = document.getElementById('guestGrid');
+  CONTENT.guests.forEach(x=>{
+    const c=document.createElement('article'); c.className='guest-card';
+    c.innerHTML = `<img class="thumb" src="${x.img}" alt="${x.n}" loading="lazy"><h3 style="margin-top:10px">${x.n}</h3><div class="meta">${x.r}</div>`;
+    gGrid.appendChild(c);
+  });
+
+  const bGrid = document.getElementById('blogGrid');
+  CONTENT.blogPosts.forEach(p=>{
+    const a = document.createElement('a'); a.href = '#'; a.className = 'blog-card';
+    a.innerHTML = `<div class="meta">${p.date} · ${p.tag}</div><h3>${p.title}</h3>`;
+    bGrid.appendChild(a);
+  });
+
+  const chatHistory = document.getElementById('chatHistory');
+  const chatInput = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('sendChat');
+  function appendChat(role, text){
+    const wrapper = document.createElement('div'); wrapper.className = 'chat-msg ' + role;
+    const bubble = document.createElement('div'); bubble.className = 'chat-bubble ' + role;
+    bubble.textContent = text; wrapper.appendChild(bubble); chatHistory.appendChild(wrapper); chatHistory.scrollTop = chatHistory.scrollHeight;
+  }
+
+  const grid = document.getElementById('grid');
+  const chipsWrap = document.getElementById('filterChips');
+  const q = document.getElementById('q');
+  const btnBuscar = document.getElementById('btnBuscar');
+  const player = document.getElementById('player');
+
+  let EP = CONTENT.episodes.slice().sort((a,b)=>(a.id||0)-(b.id||0));
+  let filterTag = 'all';
+
+  function play(src){ if(!src) return; player.src = src; player.play().catch(()=>{}); window.scrollTo({top:0, behavior:'smooth'}); }
+  function buildChips(tags){
+    chipsWrap.innerHTML = '';
+    ['all', ...tags].forEach((t, i)=>{
+      const b = document.createElement('button'); b.className = 'chip' + (i===0 ? ' active' : ''); b.dataset.tag = t; b.textContent = t === 'all' ? 'Todos' : t;
+      b.addEventListener('click', ()=>{ chipsWrap.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); b.classList.add('active'); filterTag = b.dataset.tag || 'all'; applyFilters();});
+      chipsWrap.appendChild(b);
+    });
+  }
+
+  function card(ep){
+    const a = document.createElement('article');
+    a.className = 'card';
+    a.innerHTML = `
+      <img class="thumb" loading="lazy" alt="Cover Ep. ${ep.id}" src="${ep.cover || ''}">
+      <div class="body">
+        <div class="meta">Ep. ${String(ep.id).padStart(2,'0')} · ${ep.f||''} · ${ep.d||''}</div>
+        <h3>${ep.t || ''}</h3>
+        <div class="meta">Invitado: ${ep.guest || '—'}</div>
+        <div class="tags">${String(ep.g||'').split(',').map(x=>x.trim()).filter(Boolean).map(x=>`<span class="tag">${x}</span>`).join('')}</div>
+      </div>
+      <div class="cta">
+        <button class="btn btn-cta btn-small">Reproducir</button>
+        <a class="btn btn-ghost btn-small" href="${ep.notesUrl || '#'}">Notas</a>
+      </div>`;
+    a.querySelector('button').addEventListener('click', ()=>play(ep.audio));
+    return a;
+  }
+
+  function render(list){
+    grid.innerHTML = '';
+    list.forEach(ep=>grid.appendChild(card(ep)));
+    const last = list[list.length-1] || list[0];
+    if(last){
+      document.getElementById('latestTitle').textContent = `Episodio ${String(last.id).padStart(2,'0')} · ${last.t||''}`;
+      document.getElementById('latestMeta').textContent = `Invitado: ${last.guest||'—'} · ${last.d||''} · ${last.f||''}`;
+      document.getElementById('heroVisual').src = last.cover || document.getElementById('heroVisual').src;
+      if(last.audio){ player.src = last.audio; }
+    }
+    document.getElementById('episodesCount').textContent = `${list.length} publicados`;
+    window.__WS_EP__ = list;
+  }
+
+  function applyFilters(){
+    const query = (q.value||'').toLowerCase();
+    const filtered = EP.filter(ep=>{
+      const tags = String(ep.g||'').split(',').map(x=>x.trim());
+      const tagOk = filterTag==='all' || tags.includes(filterTag);
+      const textOk = (String(ep.t||'') + ' ' + String(ep.g||'') + ' ' + String(ep.desc||'')).toLowerCase().includes(query);
+      return tagOk && textOk;
+    });
+    render(filtered.length ? filtered : EP);
+  }
+
+  sendBtn.addEventListener('click', ()=>{
+    const v = chatInput.value.trim(); if(!v) return;
+    appendChat('user', v); chatInput.value='';
+    const m = v.toLowerCase();
+    const results = (window.__WS_EP__||[]).filter(ep => (ep.t||'').toLowerCase().includes(m) || (ep.g||'').toLowerCase().includes(m) || (ep.desc||'').toLowerCase().includes(m)).slice(0,3);
+    if(results.length){ appendChat('assistant', 'Encontré: ' + results.map(ep=>`Ep.${ep.id} ${ep.t}`).join(' · ')); }
+    else { appendChat('assistant', `No encontré episodios sobre "${v}".`); }
+  });
+  chatInput.addEventListener('keypress', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); sendBtn.click(); }});
+  btnBuscar.addEventListener('click', applyFilters);
+  q.addEventListener('input', ()=>{ clearTimeout(window.__t); window.__t = setTimeout(applyFilters, 180); });
+
+  buildChips(Array.from(new Set(EP.flatMap(ep=>String(ep.g||'').split(',').map(x=>x.trim()).filter(Boolean)))).sort());
+  render(EP);
+})();
+</script>
+</body>
+</html>
