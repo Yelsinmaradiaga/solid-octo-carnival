@@ -1,0 +1,38 @@
+{
+  "siteSettings": {
+    "brandName": "The WallSpire Podcast",
+    "brandTag": "NYC · Español",
+    "heroTitle": "Historias reales de desarrollo y mejora continua",
+    "heroSubtitle": "Conversaciones prácticas con profesionales que ejecutan",
+    "aboutSub": "Podcast orientado a crecimiento personal y profesional",
+    "footTag": "Nunca parar de ejecutar"
+  },
+  "episodes": [
+    {
+      "id": 1,
+      "t": "Título del episodio",
+      "g": "liderazgo,negocios",
+      "guest": "Nombre invitado",
+      "d": "43:20",
+      "f": "2026-04-19",
+      "desc": "Resumen corto del episodio",
+      "cover": "https://tu-cdn.com/portada-episodio.jpg",
+      "audio": "https://tu-cdn.com/audio-episodio.mp3",
+      "notesUrl": "https://tu-sitio.com/notas/episodio-1"
+    }
+  ],
+  "guests": [
+    {
+      "n": "Nombre invitado",
+      "r": "Rol o especialidad",
+      "img": "https://tu-cdn.com/foto-invitado.jpg"
+    }
+  ],
+  "blogPosts": [
+    {
+      "title": "Título del artículo",
+      "date": "2026-04-19",
+      "tag": "producción"
+    }
+  ]
+}
