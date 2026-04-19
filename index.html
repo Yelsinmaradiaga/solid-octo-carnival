@@ -6,7 +6,6 @@
   <title>The WallSpire Podcast · Plataforma de Crecimiento</title>
   <meta name="description" content="The WallSpire Podcast: historias de desarrollo, crecimiento y mejora continua. Comunidad desde Nueva York para profesionales que no paran de ejecutar." />
   <meta name="theme-color" content="#0a0a0a" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root{--max:1280px;--radius:14px;--border:#232323;--bg:#0a0a0a;--panel:#101010;--panel2:#151515;--text:#f0f2f5;--muted:#b8c0cc;--brand:#98ca3f;--brand2:#00aeef;--accent:#f6c453}
     [data-theme="neon"]{--bg:#050505;--panel:#0e0e1a;--panel2:#14143d;--text:#e7e7ff;--muted:#9090b0;--brand:#ff6bfa;--brand2:#00f1ff;--accent:#ffde59}
@@ -14,7 +13,7 @@
     [data-theme="ocean"]{--bg:#001219;--panel:#001f2f;--panel2:#002d47;--text:#e0f4ff;--muted:#8dbbcf;--brand:#0077b6;--brand2:#0096c7;--accent:#48cae4}
     [data-theme="dark"]{--bg:#000;--panel:#0a0a0a;--panel2:#1a1a1a;--text:#f5f5f5;--muted:#888;--brand:#bb86fc;--brand2:#3700b3;--accent:#03dac6}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;line-height:1.6;padding-bottom:64px;min-height:100vh}
+    body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;line-height:1.6;padding-bottom:64px;min-height:100vh}
     img{display:block;max-width:100%} a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 20px}
     .btn{border:none;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
@@ -27,13 +26,13 @@
     .brand-fallback,.brand-logo{width:40px;height:40px;border-radius:10px}
     .brand-fallback{background:conic-gradient(from 120deg,var(--brand),var(--brand2))}
     .brand-logo{display:none;object-fit:cover}
-    .brand-name{font-family:Poppins,system-ui;font-weight:800;font-size:1.2rem}
+    .brand-name{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;font-weight:800;font-size:1.2rem}
     .meta{color:var(--muted);font-size:.92rem}
     nav ul{list-style:none;display:flex;gap:14px} nav a{padding:8px 10px;border-radius:10px} nav a:hover{background:var(--panel2)}
     .hero{position:relative;padding:48px 0 32px;border-bottom:1px solid var(--border);overflow:hidden}
     .hero-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
     .kicker{color:var(--brand);text-transform:uppercase;font-weight:800;letter-spacing:.12em;font-size:.8rem}
-    h1{font-family:Poppins,system-ui;font-weight:800;font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.12;margin:.35rem 0 .6rem}
+    h1{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;font-weight:800;font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.12;margin:.35rem 0 .6rem}
     .searchbar{margin-top:18px;display:flex;gap:10px}
     .input{flex:1;background:var(--panel2);border:1px solid var(--border);color:var(--text);padding:12px 14px;border-radius:12px}
     .hero-image{border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:0 16px 40px #0008}
@@ -117,7 +116,7 @@
     </div>
     <div class="player" aria-label="Reproductor">
       <div class="hero-image">
-        <img id="heroVisual" src="https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=1200&q=80" alt="Estudio de podcast con micrófono" loading="lazy" />
+        <img id="heroVisual" alt="Estudio de podcast con micrófono" loading="lazy" />
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
         <div>
@@ -211,15 +210,22 @@
   'use strict';
 
   const CONTENT = {
+    covers: {
+      hero: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%2300aeef"/><stop offset="1" stop-color="%2398ca3f"/></linearGradient></defs><rect width="100%25" height="100%25" fill="%230b0b0b"/><rect x="40" y="40" width="1200" height="640" rx="24" fill="url(%23g)" opacity=".35"/><circle cx="270" cy="360" r="110" fill="%2300aeef"/><rect x="355" y="308" width="430" height="104" rx="50" fill="%23f0f2f5"/><text x="80" y="120" font-size="46" font-family="Arial" fill="%23f0f2f5" font-weight="700">The WallSpire Podcast</text><text x="80" y="170" font-size="28" font-family="Arial" fill="%23b8c0cc">Historias de crecimiento y mejora continua</text></svg>',
+      ep1: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675"><rect width="100%25" height="100%25" fill="%23121212"/><rect x="40" y="40" width="1120" height="595" rx="28" fill="%2300aeef" opacity=".35"/><text x="80" y="160" fill="%23ffffff" font-size="56" font-family="Arial" font-weight="700">Ep. 01</text><text x="80" y="245" fill="%23f0f2f5" font-size="42" font-family="Arial">Disciplina y enfoque</text><text x="80" y="310" fill="%23b8c0cc" font-size="28" font-family="Arial">WallSpire Podcast</text></svg>',
+      ep2: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675"><rect width="100%25" height="100%25" fill="%23121212"/><rect x="40" y="40" width="1120" height="595" rx="28" fill="%2398ca3f" opacity=".35"/><text x="80" y="160" fill="%23ffffff" font-size="56" font-family="Arial" font-weight="700">Ep. 02</text><text x="80" y="245" fill="%23f0f2f5" font-size="42" font-family="Arial">Liderazgo en incertidumbre</text><text x="80" y="310" fill="%23b8c0cc" font-size="28" font-family="Arial">WallSpire Podcast</text></svg>',
+      ep3: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675"><rect width="100%25" height="100%25" fill="%23121212"/><rect x="40" y="40" width="1120" height="595" rx="28" fill="%23f6c453" opacity=".35"/><text x="80" y="160" fill="%23ffffff" font-size="56" font-family="Arial" font-weight="700">Ep. 03</text><text x="80" y="245" fill="%23f0f2f5" font-size="42" font-family="Arial">De idea a producto</text><text x="80" y="310" fill="%23b8c0cc" font-size="28" font-family="Arial">WallSpire Podcast</text></svg>',
+      guest: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="900" height="506"><rect width="100%25" height="100%25" fill="%23131313"/><circle cx="450" cy="220" r="110" fill="%2300aeef" opacity=".55"/><rect x="300" y="330" width="300" height="130" rx="65" fill="%2398ca3f" opacity=".5"/></svg>'
+    },
     episodes: [
-      {id:1,t:'Construir disciplina cuando nadie te ve',g:'hábitos,productividad',guest:'Tania Caballero',d:'39:12',f:'2026-03-10',desc:'Sistemas simples para mantener foco y ejecución en proyectos largos.',cover:'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=1200&q=80',audio:'',notesUrl:'#'},
-      {id:2,t:'Liderar equipos en incertidumbre',g:'liderazgo,negocios',guest:'Kristian Nuñez',d:'48:06',f:'2026-03-17',desc:'Framework práctico para decidir, delegar y sostener cultura.',cover:'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80',audio:'',notesUrl:'#'},
-      {id:3,t:'De idea a producto sin quemarte',g:'emprendimiento,estrategia',guest:'Elena Gómez',d:'42:18',f:'2026-04-02',desc:'Cómo convertir conversaciones con usuarios en roadmap semanal.',cover:'https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=1200&q=80',audio:'',notesUrl:'#'}
+      {id:1,t:'Construir disciplina cuando nadie te ve',g:'hábitos,productividad',guest:'Tania Caballero',d:'39:12',f:'2026-03-10',desc:'Sistemas simples para mantener foco y ejecución en proyectos largos.',cover:'',audio:'',notesUrl:'#'},
+      {id:2,t:'Liderar equipos en incertidumbre',g:'liderazgo,negocios',guest:'Kristian Nuñez',d:'48:06',f:'2026-03-17',desc:'Framework práctico para decidir, delegar y sostener cultura.',cover:'',audio:'',notesUrl:'#'},
+      {id:3,t:'De idea a producto sin quemarte',g:'emprendimiento,estrategia',guest:'Elena Gómez',d:'42:18',f:'2026-04-02',desc:'Cómo convertir conversaciones con usuarios en roadmap semanal.',cover:'',audio:'',notesUrl:'#'}
     ],
     guests:[
-      {n:'TANIA CABALLERO',r:'Trader y Mentora',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80'},
-      {n:'KRISTIAN NUÑEZ',r:'Psicólogo Organizacional',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80'},
-      {n:'ELENA GÓMEZ',r:'Experta en UX',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80'}
+      {n:'TANIA CABALLERO',r:'Trader y Mentora',img:''},
+      {n:'KRISTIAN NUÑEZ',r:'Psicólogo Organizacional',img:''},
+      {n:'ELENA GÓMEZ',r:'Experta en UX',img:''}
     ],
     blogPosts:[
       {title:'Guía rápida para producir episodios semanales',date:'2026-04-01',tag:'producción'},
@@ -237,6 +243,9 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   const gGrid = document.getElementById('guestGrid');
+  document.getElementById('heroVisual').src = CONTENT.covers.hero;
+  CONTENT.episodes = CONTENT.episodes.map((ep, idx)=>({ ...ep, cover: ep.cover || CONTENT.covers[`ep${idx+1}`] || CONTENT.covers.hero }));
+  CONTENT.guests = CONTENT.guests.map((g)=>({ ...g, img: g.img || CONTENT.covers.guest }));
   CONTENT.guests.forEach(x=>{
     const c=document.createElement('article'); c.className='guest-card';
     c.innerHTML = `<img class="thumb" src="${x.img}" alt="${x.n}" loading="lazy"><h3 style="margin-top:10px">${x.n}</h3><div class="meta">${x.r}</div>`;

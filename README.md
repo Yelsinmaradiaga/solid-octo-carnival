@@ -1,6 +1,7 @@
 # solid-octo-carnival
 
 Sitio estático para **The WallSpire Podcast** listo para iniciar publicación de contenido.
+La versión actual carga **sin depender de Google Fonts/Unsplash** (modo offline-friendly).
 
 ## Archivos
 
