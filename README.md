@@ -2,7 +2,11 @@
 
 Juego de carros animados estilo plataformas (inspirado en la sensación arcade de Mario), ambientado en una avenida de **New York City**.
 
-## Cómo correrlo aquí
+## Abrir directamente (sin servidor)
+
+- Solo abre el archivo `index.html` en tu navegador (doble click).
+
+## Opción con servidor local
 
 ```bash
 python3 -m http.server 8000
