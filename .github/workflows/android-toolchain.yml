@@ -1,0 +1,30 @@
+name: Android build tools
+on:
+  push:
+    branches: [codex/android-toolchain-20261101]
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Prepare installed Android build tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "$ANDROID_HOME/platforms/android-35/android.jar"
+          test -x "$ANDROID_HOME/build-tools/35.0.0/aapt2"
+          mkdir -p bundle/platform bundle/build-tools
+          cp "$ANDROID_HOME/platforms/android-35/android.jar" bundle/platform/android.jar
+          cp -a "$ANDROID_HOME/build-tools/35.0.0/." bundle/build-tools/
+          tar -czf android-toolchain.tar.gz -C bundle .
+          sha256sum android-toolchain.tar.gz
+      - name: Keep build tools for the APK build
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: android-toolchain
+          path: android-toolchain.tar.gz
+          retention-days: 1
+          if-no-files-found: error
+          compression-level: 0
